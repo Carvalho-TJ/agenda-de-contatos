@@ -16,6 +16,17 @@ def visualizar_contatos(lista_contatos):
     print(f"{indice}. [{favorito}] Nome: {contato['nome']}, Telefone: {contato['telefone']}, Email: {contato['email']}")
   return
 
+def atualizar_contato(lista_contatos, indice_contato, novo_nome, novo_telefone, novo_email):
+  indice_contato_ajustado = int(indice_contato) - 1
+  if indice_contato_ajustado >= 0 and indice_contato_ajustado < len(lista_contatos):
+    lista_contatos[indice_contato_ajustado]["nome"] = novo_nome
+    lista_contatos[indice_contato_ajustado]["telefone"] = novo_telefone
+    lista_contatos[indice_contato_ajustado]["email"] = novo_email
+    print(f"Contato {indice_contato} atualizado com sucesso!")
+  else:
+    print("Índice de contato inválido.")
+  return
+
 lista_contatos = []
 while True:
   print("\n********************************************")
@@ -39,7 +50,13 @@ while True:
     adicionar_contato(lista_contatos, nome, telefone, email, favorito)
   elif opcao == "2":
     visualizar_contatos(lista_contatos)
-  # elif opcao == "3":
+  elif opcao == "3":
+    visualizar_contatos(lista_contatos)
+    indice_contato = input("Digite o índice do contato a ser atualizado: ")
+    novo_nome = input("Digite o novo nome do contato: ")
+    novo_telefone = input("Digite o novo telefone do contato: ")
+    novo_email = input("Digite o novo email do contato: ")
+    atualizar_contato(lista_contatos, indice_contato, novo_nome, novo_telefone, novo_email)
   # elif opcao == "4":
   # elif opcao == "5":
   # elif opcao == "6":
