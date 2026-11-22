@@ -12,7 +12,7 @@ def adicionar_contato(lista_contatos, nome, telefone, email, favorito):
 def visualizar_contatos(lista_contatos):
   print("\nLista de Contatos:")
   for indice, contato in enumerate(lista_contatos, start=1):
-    favorito = "★" if contato["favorito"] else " "
+    favorito = "★ " if contato["favorito"] else " "
     print(f"{indice}. [{favorito}] Nome: {contato['nome']}, Telefone: {contato['telefone']}, Email: {contato['email']}")
   return
 
@@ -23,6 +23,17 @@ def atualizar_contato(lista_contatos, indice_contato, novo_nome, novo_telefone, 
     lista_contatos[indice_contato_ajustado]["telefone"] = novo_telefone
     lista_contatos[indice_contato_ajustado]["email"] = novo_email
     print(f"Contato {indice_contato} atualizado com sucesso!")
+  else:
+    print("Índice de contato inválido.")
+  return
+
+def marcar_favorito(lista_contatos, indice_contato):
+  indice_contato_ajustado = int(indice_contato) - 1
+  if indice_contato_ajustado >= 0 and indice_contato_ajustado < len(lista_contatos):
+    contato = lista_contatos[indice_contato_ajustado]
+    contato["favorito"] = not contato["favorito"]
+    status = "marcado como favorito" if contato["favorito"] else "desmarcado como favorito"
+    print(f"Contato {indice_contato} {status}.")
   else:
     print("Índice de contato inválido.")
   return
@@ -57,7 +68,10 @@ while True:
     novo_telefone = input("Digite o novo telefone do contato: ")
     novo_email = input("Digite o novo email do contato: ")
     atualizar_contato(lista_contatos, indice_contato, novo_nome, novo_telefone, novo_email)
-  # elif opcao == "4":
+  elif opcao == "4":
+    visualizar_contatos(lista_contatos)
+    indice_contato = input("Digite o índice do contato a ser marcado/desmarcado como favorito: ")
+    marcar_favorito(lista_contatos, indice_contato)
   # elif opcao == "5":
   # elif opcao == "6":
   elif opcao == "7":
