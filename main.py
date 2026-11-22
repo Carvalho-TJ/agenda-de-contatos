@@ -38,6 +38,13 @@ def marcar_favorito(lista_contatos, indice_contato):
     print("Índice de contato inválido.")
   return
 
+def visualizar_favoritos(lista_contatos):
+  print("\nLista de Contatos Favoritos:")
+  for indice, contato in enumerate(lista_contatos, start=1):
+    if contato["favorito"]:
+      print(f"{indice}. Nome: {contato['nome']}, Telefone: {contato['telefone']}, Email: {contato['email']}")
+  return
+
 lista_contatos = []
 while True:
   print("\n********************************************")
@@ -72,7 +79,8 @@ while True:
     visualizar_contatos(lista_contatos)
     indice_contato = input("Digite o índice do contato a ser marcado/desmarcado como favorito: ")
     marcar_favorito(lista_contatos, indice_contato)
-  # elif opcao == "5":
+  elif opcao == "5":
+    visualizar_favoritos(lista_contatos)
   # elif opcao == "6":
   elif opcao == "7":
     print("Saindo da agenda de contatos...")
